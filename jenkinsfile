@@ -10,8 +10,7 @@ pipeline {
             }
             steps {
                 sh "echo 'Hello World'"
-                sh 'npm install'
-                sh 'npm --version'
+
             }
         }
         stage('AWS CLI test') {
@@ -25,6 +24,11 @@ pipeline {
                 sh 'aws --version'
 
             }
+        }
+    }
+    post {
+        always {
+            cleanWs()
         }
     }
 }

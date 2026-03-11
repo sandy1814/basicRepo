@@ -14,5 +14,17 @@ pipeline {
                 sh 'npm --version'
             }
         }
+        stage('AWS CLI test') {
+            agent {
+                docker {
+                    image 'amazon/aws-cli'
+                    arg "--entrypoint=''"
+                }
+            }
+            steps {
+                sh 'aws --version'
+
+            }
+        }
     }
 }

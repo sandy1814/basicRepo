@@ -1,0 +1,25 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Linux package installation') {
+            agent {
+                docker {
+                    image 'ubuntu:noble'
+                }
+            }
+            steps {
+                sh '''
+                    apt update
+                    apt install jq
+                   '''
+            }
+        }
+    }
+    post {
+        always {
+            cleanWs()
+        }
+    }
+    
+}
